@@ -1,5 +1,5 @@
 #include <stdio.h>
-bzero(void *b, size_t len)
+void bzero(void *b, size_t len)
 {
     char    *block;
     size_t i;
