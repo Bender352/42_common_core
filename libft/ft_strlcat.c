@@ -1,11 +1,12 @@
-int ft_strlcat(char *dest, const char *src, unsigned int size)
+#include <stdio.h>
+int ft_strlcat(char *dest, const char *src, size_t size)
 {
-    unsigned int    src_len;
-    unsigned int    dst_len_append;
-    unsigned int    i;
+    size_t    src_len;
+    size_t    dst_len_append;
+    size_t    i;
 
-    src_len = (unsigned int) ft_strlen(src);
-    dst_len_append = (unsigned int) ft_strlen(dest);
+    src_len = (size_t) ft_strlen(src);
+    dst_len_append = (size_t) ft_strlen(dest);
     i = 0;
     while (i < src_len && dst_len_append - 1 + i < size)
     {
@@ -13,7 +14,7 @@ int ft_strlcat(char *dest, const char *src, unsigned int size)
         i++;
     }
     dest[dst_len_append - 1 + i] = '\0';
-    return ((unsigned int)ft_strlen(dest));
+    return ((size_t)ft_strlen(dest));
 }
     int ft_strlen(char *str)
 {
