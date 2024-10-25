@@ -7,5 +7,6 @@
 
 void    bzero(void *b, size_t len);
 int ft_isalnum(int i);
+void *ft_memchr(const void *s, int c, size_t n);
 
 #endif
