@@ -1,21 +1,23 @@
 #include "libft.h"
 
-void *memchr(const void *s, int c, size_t n)
+void *ft_memchr(const void *s, int c, size_t n)
 {
     size_t  i;
-
+    const unsigned char *buff;
+    
+    buff = s;
     i = 0;
     while (i < n)
     {
-        if((const char *)s[i] == (unsigned char)c)
+        if(buff[i] == (unsigned char)c)
         {
-            return (s + i);
+            return (buff + i);
         }
         i++;
     }
     return (NULL);
 }
-
+/*
 int	main(void)
 {
 	char   *s = "quick brown fox jumps over the lazy dog";
@@ -25,3 +27,4 @@ int	main(void)
 	printf("ft_memchr: %p\n", ft_memchr(s, c, n));
 	printf("memchr: %p\n", memchr(s, c, n));
 }
+*/

@@ -16,3 +16,13 @@ void ft_memcpy(void *dst, const void *src, size_t len)
     }
     return (dst);
 }
+/*
+int	main(void)
+{
+    char src[] = "Hello World!";
+    char dst[13];
+    ft_memcpy(dst, src, 10);
+    printf("%s\n", dst);
+    return (0);
+}
+*/
