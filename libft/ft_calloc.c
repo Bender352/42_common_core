@@ -9,6 +9,6 @@ void *ft_calloc(size_t number_of_elements, size_t el_size)
     buff = malloc(number_of_elements * el_size);
     if (buff == NULL)
         return (NULL);
-    buff = ft_bzero(buff, number_of_elements * el_size);
+    ft_bzero(buff, number_of_elements * el_size);
     return (buff);
 }
