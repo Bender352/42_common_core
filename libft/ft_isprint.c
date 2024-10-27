@@ -1,4 +1,4 @@
-ft_isprint(int i)
+int ft_isprint(int i)
 {
     if(i >= 32 && i <= 126)
         return (1);

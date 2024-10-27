@@ -1,5 +1,5 @@
 #include <stdio.h>
-void *memset(void *s, int c, size_t len)
+void *ft_memset(void *s, int c, size_t len)
 {
     size_t  i;
     char    *bloc;
