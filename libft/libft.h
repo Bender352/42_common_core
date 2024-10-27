@@ -4,6 +4,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
+# include <stdlib.h>
 
 int ft_atoi(const char *str);
 void    ft_bzero(void *b, size_t len);
