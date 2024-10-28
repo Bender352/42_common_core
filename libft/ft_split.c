@@ -1,54 +1,51 @@
 #include "libft.h"
 
-char   **add_to_array(char **array, char *append);
+char **ft_split(char const *s, char c);
+char **add_to_array(char **array, char *append);
+char *ft_substr(char const *s, unsigned int start, size_t len);
 
 char **ft_split(char const *s, char c)
 {
-    int current_pos;
-    int old_pos;
-    char    **array;
+    unsigned int current_pos = 0;
+    unsigned int old_pos = 0;
+    char **array = NULL;
 
-    current_pos = 0;
-    old_pos = 0;
     while (s[current_pos])
     {
-        if(s[current_pos] == c)
+        if (s[current_pos] == c)
         {
-            array = add_to_array(array, ft_substr(s, current_pos, current_pos - old_pos));
+            array = add_to_array(array, ft_substr(s, old_pos, (current_pos - old_pos)));
+            old_pos = current_pos + 1;
         }
         current_pos++;
     }
-    return (array);
+    if (old_pos < current_pos)
+        array = add_to_array(array, ft_substr(s, old_pos, current_pos - old_pos));
+    return array;
 }
 
-char   **add_to_array(char **array, char *append)
+char **add_to_array(char **array, char *append)
 {
-    int len;
-    char    **new_array;
-    int i;
-
+    unsigned int len;
+    unsigned int i;    
+    
     len = 0;
-    while (array[len])
-        len++;
-    if (len == 0)
-    {
-        new_array = (char**)malloc(sizeof(char**) * 1);
-        len++;
-    }
-    else
-        new_array = (char**)malloc(sizeof(char**) * len + 2);
     i = 0;
+    while (array && array[len])
+        len++;
+    char **new_array = (char **)malloc(sizeof(char *) * (len + 2));
+    if (!new_array)
+        return NULL;
     while (i < len)
     {
-        new_array[i] = array[1];
+        new_array[i] = array[i];
         i++;
     }
-    new_array[i ] = append;
-    new_array[i + 1] = NULL;
+    new_array[len] = append;
+    new_array[len + 1] = NULL;
     free(array);
-    return (new_array);
+    return new_array;
 }
-
 
 int main(void)
 {
