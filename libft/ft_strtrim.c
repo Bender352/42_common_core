@@ -1,5 +1,22 @@
 #include "libft.h"
 
+char *ft_strtrim(char const *s1, char const *s2)
+{
+    size_t start_index;
+    size_t end_index;
+
+    if(!s1 || !s2)
+        return (NULL);
+    end_index = ft_strlen(s1);
+    start_index = 0;
+    while (s1[start_index] && ft_strchr(s2, s1[start_index]))
+        start_index++;
+    while (end_index > start_index && ft_strchr(s2, s1[end_index - 1]))
+        end_index--;
+    return(ft_substr(s1, start_index, end_index - start_index));    
+}
+/*
+
 int contains_c(char const *set, char c);
 int define_end(char const *str, char const *set);
 int define_start(char const *str, char const *set);
@@ -12,7 +29,7 @@ char *ft_strtrim(char const *s1, char const *s2)
     char    *str;
     char    *set;
 
-    str = s1;
+    str =(char *) s1;
     set = s2;
     if (!str || !set)
         return (NULL);
@@ -64,3 +81,4 @@ int contains_c(char const *set, char c)
     }
     return (0);
 }
+*/

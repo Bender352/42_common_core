@@ -1,5 +1,5 @@
-#ifndef LIBFT.H
-# define LIBFT.H
+#ifndef LIBFT_H
+# define LIBFT_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -19,6 +19,7 @@ int ft_memcmp(const void *s1, const void *s2, size_t size);
 void    ft_memcpy(void *dst, const void *src, size_t len);
 void    ft_memmove(void *dst, const	void *src, size_t len);
 void    *ft_memset(void *s, int c, size_t len);
+char    **ft_split(char const *s, char c);
 char    *ft_strchr(const char *str, int c);
 char    *ft_strdup(const char *s);
 int ft_strlcat(char *dest, const char *src, size_t size);
