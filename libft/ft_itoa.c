@@ -75,7 +75,7 @@ int nbr_digits (int nbr)
     }
     return (i);
 }
-
+/*
 int main(void)
 {
     // Test cases
@@ -99,3 +99,4 @@ int main(void)
 
     return 0;
 }
+*/
