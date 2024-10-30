@@ -22,7 +22,7 @@ char    *ft_itoa(int n)
     }
     else
         neg_flag = 0;
-    buff = (char *)malloc(sizeof(char) * ( i + neg_flag));
+    buff = (char * )ft_calloc(( i + neg_flag), sizeof (char));
     if (buff == NULL)
         return (NULL);
     return ((char *)convert_to_str(buff, n, i, neg_flag));
@@ -33,29 +33,31 @@ char    *handle_exception(int nbr)
     char    *buff;
     if ( nbr == 0)
     {
-        buff = (char * )malloc(sizeof (char) * 2);
+        buff = (char * )ft_calloc(2, sizeof (char));
         buff = "0";
         return (buff);
     }
     if (nbr == INT_MIN)
     {
-        buff = (char * )malloc(sizeof (char) * 12);
+        buff = (char * )ft_calloc(12, sizeof (char));
         buff = "-2147483648";
         return (buff);
     }
     if (nbr == INT_MAX)
     {
-        buff = (char * )malloc(sizeof (char) * 11);
+        buff = (char * )ft_calloc(11, sizeof (char));
         buff = "2147483647";
         return (buff);
     }
+    return (NULL);
 }
 char    *convert_to_str(char *buff, size_t nbr, int i, int neg_flag)
 {
     buff[i] = '\0';
-    while (i - 1)
+    i--;
+    while (i > 0)
     {
-        buff[i] = nbr % 10 + '0';
+        buff[i] = (nbr % 10) + '0';
         nbr /= 10;
         i--;
     }
@@ -76,10 +78,7 @@ int nbr_digits (int nbr)
     }
     return (i);
 }
-
-#include <stdio.h>
-#include <limits.h> // for INT_MIN
-#include <stdlib.h> // for free
+/*
 int main(void)
 {
     // Test cases
@@ -102,4 +101,4 @@ int main(void)
     }
 
     return 0;
-}
+}*/

@@ -7,14 +7,13 @@ void ft_memcpy(void *dst, const void *src, size_t len)
     unsigned char    *buff_dst;
 
     i = 0;
-    buff_dst = (const char *)dst;
-    buff_src = (char *)src;
+    buff_dst = (unsigned char *)dst;
+    buff_src = (const unsigned char *)src;
     while (i < len)
     {
         buff_dst[i] = buff_src[i];
         i++;
     }
-    return (dst);
 }
 /*
 int	main(void)

@@ -1,6 +1,6 @@
 #include "libft.h"
 
-void *ft_calloc(size_t number_of_elements, size_t el_size)
+void    *ft_calloc(size_t number_of_elements, size_t el_size)
 {
     void    *buff;
 

@@ -7,8 +7,8 @@ int    ft_memcmp(const void *s1, const void *s2, size_t size)
   unsigned char *buff_s2;
 
   i = 0;
-  buff_s1 = s1;
-  buff_s2 = s2;
+  buff_s1 = (unsigned char *)s1;
+  buff_s2 = (unsigned char *)s2;
 
   while (i < size)
   {

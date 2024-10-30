@@ -7,7 +7,7 @@ char *ft_strtrim(char const *s1, char const *s2)
 
     if(!s1 || !s2)
         return (NULL);
-    end_index = ft_strlen(s1);
+    end_index = ft_strlen((char *)s1);
     start_index = 0;
     while (s1[start_index] && ft_strchr(s2, s1[start_index]))
         start_index++;

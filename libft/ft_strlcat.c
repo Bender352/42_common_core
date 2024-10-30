@@ -5,7 +5,7 @@ int ft_strlcat(char *dest, const char *src, size_t size)
     size_t    dst_len_append;
     size_t    i;
 
-    src_len = (size_t) ft_strlen(src);
+    src_len = (size_t) ft_strlen((char *)src);
     dst_len_append = (size_t) ft_strlen(dest);
     i = 0;
     while (i < src_len && dst_len_append - 1 + i < size)

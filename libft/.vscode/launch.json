@@ -6,7 +6,14 @@
             "name": "C/C++ Runner: Debug Session",
             "type": "cppdbg",
             "request": "launch",
-            "args": [],
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "test.out",
+                "-L.",          // Library path: current directory
+                "-lft"          // Link against libft.a
+            ],
             "stopAtEntry": false,
             "externalConsole": false,
             "cwd": "/home/sven/42/core/42_common_core/libft",

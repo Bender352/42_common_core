@@ -23,6 +23,6 @@ char    *ft_strrchr(const char *str, int c)
     if (flag == 0)
         return (NULL);
     if (c == '\0')
-        return ((char *)str + i)
+        return ((char *)str + i);
     return ((char*)str + last_pos);
 }
