@@ -20,9 +20,7 @@ char    *ft_itoa(int n)
         neg_flag = 1;
         n = n * -1;
     }
-    else
-        neg_flag = 0;
-    buff = (char * )ft_calloc(( i + neg_flag), sizeof (char));
+    buff = (char * )malloc(( i + neg_flag) * sizeof (char));
     if (buff == NULL)
         return (NULL);
     return ((char *)convert_to_str(buff, n, i, neg_flag));
@@ -33,19 +31,19 @@ char    *handle_exception(int nbr)
     char    *buff;
     if ( nbr == 0)
     {
-        buff = (char * )ft_calloc(2, sizeof (char));
+        buff = (char * )malloc(2 * sizeof (char));
         buff = "0";
         return (buff);
     }
     if (nbr == INT_MIN)
     {
-        buff = (char * )ft_calloc(12, sizeof (char));
+        buff = (char * )malloc(12 * sizeof (char));
         buff = "-2147483648";
         return (buff);
     }
     if (nbr == INT_MAX)
     {
-        buff = (char * )ft_calloc(11, sizeof (char));
+        buff = (char * )malloc(11 * sizeof (char));
         buff = "2147483647";
         return (buff);
     }
@@ -53,11 +51,10 @@ char    *handle_exception(int nbr)
 }
 char    *convert_to_str(char *buff, size_t nbr, int i, int neg_flag)
 {
-    buff[i] = '\0';
-    i--;
+    buff[i + neg_flag] = '\0';
     while (i > 0)
     {
-        buff[i] = (nbr % 10) + '0';
+        buff[i + neg_flag - 2] = (nbr % 10) + '0';
         nbr /= 10;
         i--;
     }
@@ -78,7 +75,7 @@ int nbr_digits (int nbr)
     }
     return (i);
 }
-/*
+
 int main(void)
 {
     // Test cases
@@ -101,4 +98,4 @@ int main(void)
     }
 
     return 0;
-}*/
+}
