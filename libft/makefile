@@ -39,6 +39,8 @@ SRC = ft_atoi.c \
 	  ft_toupper.c
 SRC_BONUS = ft_lstnew.c \
 			ft_lstaddfront.c \
+			ft_lstsize.c \
+			ft_lstlast.c \
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
