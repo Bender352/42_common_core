@@ -1,27 +1,28 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbruck <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/31 13:47:41 by sbruck            #+#    #+#             */
+/*   Updated: 2024/10/31 13:47:43 by sbruck           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void ft_memcpy(void *dst, const void *src, size_t len)
-{
-    size_t  i;
-    const unsigned char    *buff_src;
-    unsigned char    *buff_dst;
+#include "libft.h"
 
-    i = 0;
-    buff_dst = (unsigned char *)dst;
-    buff_src = (const unsigned char *)src;
-    while (i < len)
-    {
-        buff_dst[i] = buff_src[i];
-        i++;
-    }
-}
-/*
-int	main(void)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-    char src[] = "Hello World!";
-    char dst[13];
-    ft_memcpy(dst, src, 10);
-    printf("%s\n", dst);
-    return (0);
+	size_t	i;
+
+	if (!dst && !src)
+		return (0);
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dst);
 }
-*/

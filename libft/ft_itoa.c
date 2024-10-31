@@ -1,91 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbruck <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/31 13:45:21 by sbruck            #+#    #+#             */
+/*   Updated: 2024/10/31 13:45:23 by sbruck           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char    *convert_to_str(char *buff, size_t nbr, int i, int neg_flag);
-int nbr_digits (int nbr);
-char    *ft_itoa(int n);
-char    *handle_exception(int nbr);
-
-char    *ft_itoa(int n)
+static size_t	get_size(int n)
 {
-    size_t i;
-    int neg_flag;
-    char    *buff;
+	size_t	size;
 
-    neg_flag = 0;
-    if (n == 0 || n == INT_MIN || n == INT_MAX)
-        return (handle_exception(n));
-    i = nbr_digits(n);
-    if(n < 0)
-    {
-        neg_flag = 1;
-        n = n * -1;
-    }
-    buff = (char * )malloc(( i + neg_flag) * sizeof (char));
-    if (buff == NULL)
-        return (NULL);
-    return ((char *)convert_to_str(buff, n, i, neg_flag));
+	if (n > 0)
+		size = 0;
+	else
+		size = 1;
+	while (n)
+	{
+		n /= 10;
+		size++;
+	}
+	return (size);
 }
 
-char    *handle_exception(int nbr)
+char	*ft_itoa(int n)
 {
-    char    *buff;
-    if ( nbr == 0)
-    {
-        buff = (char * )malloc(2 * sizeof (char));
-        buff = "0";
-        return (buff);
-    }
-    if (nbr == INT_MIN)
-    {
-        buff = (char * )malloc(12 * sizeof (char));
-        buff = "-2147483648";
-        return (buff);
-    }
-    if (nbr == INT_MAX)
-    {
-        buff = (char * )malloc(11 * sizeof (char));
-        buff = "2147483647";
-        return (buff);
-    }
-    return (NULL);
-}
-char    *convert_to_str(char *buff, size_t nbr, int i, int neg_flag)
-{
-    buff[i + neg_flag] = '\0';
-    while (i > 0)
-    {
-        buff[i + neg_flag - 2] = (nbr % 10) + '0';
-        nbr /= 10;
-        i--;
-    }
-    if (neg_flag == 1)
-        buff[0] = '-';
-    return (buff);
-}
+	char	*result;
+	long	num;
+	size_t	size;
 
-int nbr_digits (int nbr)
-{
-    size_t i;
-
-    i = 1;
-    while (nbr)
-    {
-        nbr /= 10;
-        i++;
-    }
-    return (i);
+	num = (long) n;
+	size = get_size(n);
+	if (n < 0)
+		num *= -1;
+	result = (char *) malloc(size + 1);
+	if (!result)
+		return (NULL);
+	*(result + size--) = '\0';
+	while (num > 0)
+	{
+		*(result + size--) = (num % 10) + '0';
+		num /= 10;
+	}
+	if (size == 0 && result[1] == '\0')
+		*(result + size) = '0';
+	else if (size == 0 && result[1])
+		*(result + size) = '-';
+	return (result);
 }
 /*
-int main(void)
+int	main(void)
 {
+	int		test_cases[];
+	int		num_cases;
+	char	*result;
+
     // Test cases
-    int test_cases[] = {42, -42, 0, 123456, -123456, INT_MIN, INT_MAX};
-    int num_cases = sizeof(test_cases) / sizeof(test_cases[0]);
+    test_cases[] = {42, -42, 0, 123456, -123456, INT_MIN, INT_MAX};
+    num_cases = sizeof(test_cases) / sizeof(test_cases[0]);
     
     // Loop through test cases
     for (int i = 0; i < num_cases; i++)
     {
-        char *result = ft_itoa(test_cases[i]);
+        result = ft_itoa(test_cases[i]);
         if (result)
         {
             printf("ft_itoa(%d) = %s\n", test_cases[i], result);
@@ -96,7 +78,6 @@ int main(void)
             printf("Memory allocation failed for %d\n", test_cases[i]);
         }
     }
-
-    return 0;
+    return (0);
 }
 */

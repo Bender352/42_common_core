@@ -1,120 +1,75 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbruck <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/31 13:49:03 by sbruck            #+#    #+#             */
+/*   Updated: 2024/10/31 13:49:05 by sbruck           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char **ft_split(char const *s, char c);
-char **add_to_array(char **array, char *append);
-char *ft_substr(char const *s, unsigned int start, size_t len);
-int ft_strlen(char *str);
-
-char **ft_split(char const *s, char c)
+static int	count_words(const char *str, char c)
 {
-    unsigned int current_pos = 0;
-    unsigned int old_pos = 0;
-    char **array = NULL;
+	int	i;
+	int	trigger;
 
-    while (s[current_pos])
-    {
-        if (s[current_pos] == c)
-        {
-            array = add_to_array(array, ft_substr(s, old_pos, (current_pos - old_pos)));
-            old_pos = current_pos + 1;
-        }
-        current_pos++;
-    }
-    if (old_pos < current_pos)
-        array = add_to_array(array, ft_substr(s, old_pos, current_pos - old_pos));
-    return array;
+	i = 0;
+	trigger = 0;
+	while (*str)
+	{
+		if (*str != c && trigger == 0)
+		{
+			trigger = 1;
+			i++;
+		}
+		else if (*str == c)
+			trigger = 0;
+		str++;
+	}
+	return (i);
 }
 
-char **add_to_array(char **array, char *append)
+static char	*word_dup(const char *str, int start, int finish)
 {
-    unsigned int len;
-    unsigned int i;    
-    
-    len = 0;
-    i = 0;
-    while (array && array[len])
-        len++;
-    char **new_array = (char **)malloc(sizeof(char *) * (len + 2));
-    if (!new_array)
-        return NULL;
-    while (i < len)
-    {
-        new_array[i] = array[i];
-        i++;
-    }
-    new_array[len] = append;
-    new_array[len + 1] = NULL;
-    free(array);
-    return new_array;
-}
-/*
-int main(void)
-{
-    char **result;
-    char *str = "Hello,world,this,is,42";
-    char delimiter = ',';
+	char	*word;
+	int		i;
 
-    // Call ft_split with the string and delimiter
-    result = ft_split(str, delimiter);
-
-    // Print each element of the result array
-    if (result)
-    {
-        int i = 0;
-        while (result[i])
-        {
-            printf("result[%d]: %s\n", i, result[i]);
-            i++;
-        }
-    }
-
-    // Free each string in the result array and the array itself
-    int i = 0;
-    while (result && result[i])
-    {
-        free(result[i]);
-        i++;
-    }
-    free(result);
-
-    return 0;
+	i = 0;
+	word = malloc((finish - start + 1) * sizeof(char));
+	while (start < finish)
+		word[i++] = str[start++];
+	word[i] = '\0';
+	return (word);
 }
 
-char    *ft_substr(char const *s, unsigned int start, size_t len)
+char	**ft_split(char const *s, char c)
 {
-    size_t  i;
-    char    *buff_sub;
-    size_t  s_len;
+	size_t	i;
+	size_t	j;
+	int		index;
+	char	**split;
 
-    i = 0;
-    s_len = ft_strlen((char *)s);
-    if (start > s_len)
-        return (NULL);
-    if (len > s_len - start)
-        len = s_len - start;
-    buff_sub = (char *)malloc(sizeof(char) * (len + 1));
-    if (buff_sub == NULL)
-        return (NULL);
-    while (i + start < start + len)
-    {
-        if (s[start + i] == '\0')
-            break;
-        buff_sub[i] = s[start + i];
-        i++;
-    }
-    buff_sub[i] = '\0';
-    return (buff_sub);
+	split = malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!split || !s)
+		return (NULL);
+	i = 0;
+	j = 0;
+	index = -1;
+	while (i <= ft_strlen(s))
+	{
+		if (s[i] != c && index < 0)
+			index = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
+		{
+			split[j++] = word_dup(s, index, i);
+			index = -1;
+		}
+		i++;
+	}
+	split[j] = 0;
+	return (split);
 }
-
-int ft_strlen(char *str)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-    {
-        i++;
-    }
-    return (i);
-}
-*/

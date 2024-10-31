@@ -1,18 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbruck <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/31 15:09:52 by sbruck            #+#    #+#             */
+/*   Updated: 2024/10/31 15:09:54 by sbruck           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void    ft_putnbr_fd(int nbr, int fd)
+void	ft_putnbr_fd(int nbr, int fd)
 {
-    size_t  i;
-    char    *buff;
+	char	*buff;
 
-    i = 0;
-    buff = ft_itoa(nbr);
-    if (buff == NULL)
-        return(NULL);
-    while (buff[i])
-    {
-        write(fd, &buff[i], 1);
-        i++;
-    }
-    free(buff);
+	buff = ft_itoa(nbr);
+	if (buff)
+	{
+		write(fd, buff, ft_strlen(buff));
+		free(buff);
+	}
 }

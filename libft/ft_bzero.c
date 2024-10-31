@@ -1,14 +1,27 @@
-#include <stdio.h>
-void ft_bzero(void *b, size_t len)
-{
-    char    *block;
-    size_t i;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbruck <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/31 13:43:04 by sbruck            #+#    #+#             */
+/*   Updated: 2024/10/31 13:43:07 by sbruck           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-    i = 0;
-    block = (char *) b;
-    while (i < len)
-    {
-        block[i] = '\0';
-        i++;
-    }
+#include "libft.h"
+
+void	ft_bzero(void *b, size_t len)
+{
+	char	*block;
+	size_t	i;
+
+	i = 0;
+	block = (char *)b;
+	while (i < len)
+	{
+		block[i] = '\0';
+		i++;
+	}
 }
